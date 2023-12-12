@@ -60,4 +60,12 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
-export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, MIN_LAT_NUMBER_COUNT, MAX_LAT_NUMBER_COUNT, MIN_LNG_NUMBER_COUNT, MAX_LNG_NUMBER_COUNT, TITLES, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, DESCRIPTIONS, PHOTOS };
+const TYPES = {
+  'flat': 'Квартира',
+  'bungalow': 'Бунгало',
+  'house': 'Дом',
+  'palace': 'Дворец',
+  'hotel': 'Отель',
+};
+
+export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, MIN_LAT_NUMBER_COUNT, MAX_LAT_NUMBER_COUNT, MIN_LNG_NUMBER_COUNT, MAX_LNG_NUMBER_COUNT, TITLES, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, DESCRIPTIONS, PHOTOS, TYPES };
