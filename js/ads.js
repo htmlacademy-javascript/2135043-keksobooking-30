@@ -1,37 +1,43 @@
-import { SIMILAR_ADS_COUNT, TITLES, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, DESCRIPTIONS, PHOTOS } from './data.js';
-import { getRandomInteger, getRandomArrayElement, createUniqArray } from './util.js';
+import { SIMILAR_ADS_COUNT, MIN_LAT_NUMBER_COUNT, MAX_LAT_NUMBER_COUNT, MIN_LNG_NUMBER_COUNT, MAX_LNG_NUMBER_COUNT, TITLES, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, DESCRIPTIONS, PHOTOS } from './data.js';
+import { getRandomInteger, getRandomArrayElement, createArrayWithRandomUniqElements } from './util.js';
 
 let currentAvatarId = 1;
 
 const createAvatarAutor = () => {
-  const randomAvatar = `img/avatars/user${`${currentAvatarId++}`.padStart(2, '0')}.png`;
+  const avatarIdLength = 2;
+  const randomAvatar = `img/avatars/user${`${currentAvatarId++}`.padStart(avatarIdLength, '0')}.png`;
   return randomAvatar;
 };
 
-const createRandomLocation = () => ({
-  lat: Number(`35.${getRandomInteger(65000, 70000)}`),
-  lng: Number(`139.${getRandomInteger(70000, 80000)}`),
-});
-
-const createRandomOffer = () => ({
+const createRandomOffer = (latLocation, lngLocation) => ({
   title: getRandomArrayElement(TITLES),
-  address: createRandomLocation(),
+  address: `${latLocation}, ${lngLocation}`,
   price: getRandomInteger(),
   type: getRandomArrayElement(TYPE_HOUSING),
   rooms: getRandomInteger(),
   guests: getRandomInteger(),
   checkin: getRandomArrayElement(CHECKOUT_TIME),
   checkout: getRandomArrayElement(CHECKOUT_TIME),
-  features: createUniqArray(FEATURES),
+  features: createArrayWithRandomUniqElements(FEATURES),
   description: getRandomArrayElement(DESCRIPTIONS),
-  photos: createUniqArray(PHOTOS),
+  photos: createArrayWithRandomUniqElements(PHOTOS),
 });
 
-const createSimilarAds = () => ({
-  author: createAvatarAutor(),
-  offer: createRandomOffer(),
-  location: createRandomLocation(),
+const createRandomLocation = (latLocation, lngLocation) => ({
+  lat: latLocation,
+  lng: lngLocation,
 });
+
+const createSimilarAds = () => {
+  const latCount = Number(`35.${getRandomInteger(MIN_LAT_NUMBER_COUNT, MAX_LAT_NUMBER_COUNT)}`);
+  const lngCount = Number(`139.${getRandomInteger(MIN_LNG_NUMBER_COUNT, MAX_LNG_NUMBER_COUNT)}`);
+
+  return ({
+    author: { avatar: createAvatarAutor() },
+    offer: createRandomOffer(latCount, lngCount),
+    location: createRandomLocation(latCount, lngCount)
+  });
+};
 
 const createArraySimilarAds = () => Array.from({ length: SIMILAR_ADS_COUNT }, createSimilarAds);
 

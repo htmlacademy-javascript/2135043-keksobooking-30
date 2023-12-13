@@ -1,3 +1,4 @@
-import { createArraySimilarAds } from './ads.js';
+import './get-similar-ads.js';
+import { renderingSimilarAds } from './get-similar-ads.js';
 
-createArraySimilarAds();
+renderingSimilarAds();
