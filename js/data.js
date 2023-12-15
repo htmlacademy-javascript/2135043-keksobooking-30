@@ -68,4 +68,31 @@ const TYPES = {
   'hotel': 'Отель',
 };
 
+const TITLE_LENGTH = {
+  min: 30,
+  max: 100
+};
+
+const MAX_PRICE_HOUSING_COUNT = 100000;
+
+const MIN_PRICE_HOUSING_COUNT = {
+  bungalow: 0,
+  flat: 1000,
+  hotel: 3000,
+  house: 5000,
+  palace: 10000
+};
+
+const ROOMS_GUESTS_OPTIONS = {
+  1: ['1'],
+  2: ['1', '2'],
+  3: ['1', '2', '3'],
+  100: ['0']
+};
+
+const ERROR_TITLE_MESSAGE = 'Cтрока должна содержать от 30 до 100 символов';
+const ERROR_PRICE_MESSAGE = 'Указана некорректная цена';
+const ERROR_GUESTS_MESSAGE = 'Указано некорректное колличество мест';
+
 export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, MIN_LAT_NUMBER_COUNT, MAX_LAT_NUMBER_COUNT, MIN_LNG_NUMBER_COUNT, MAX_LNG_NUMBER_COUNT, TITLES, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, DESCRIPTIONS, PHOTOS, TYPES };
+export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE };

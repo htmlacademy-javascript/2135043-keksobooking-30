@@ -1,11 +1,12 @@
-const form = document.querySelector('.ad-form');
-const formFieldset = form.querySelectorAll('.ad-form__element');
+import { adForm } from './form.js';
+
+const formFieldset = adForm.querySelectorAll('.ad-form__element');
 const filtersForm = document.querySelector('.map__filters');
 const selectFiltersForm = filtersForm.querySelectorAll('.map__filters select');
 const fieldsetFiltersForm = filtersForm.querySelector('.map__filters fieldset');
 
 const createInactiveForm = () => {
-  form.classList.add('ad-form--disabled');
+  adForm.classList.add('ad-form--disabled');
   filtersForm.classList.add('map__filters--disabled');
   formFieldset.forEach((element) => {
     element.setAttribute('disabled', 'disabled');
@@ -17,7 +18,7 @@ const createInactiveForm = () => {
 };
 
 const createActiveForm = () => {
-  form.classList.remove('ad-form--disabled');
+  adForm.classList.remove('ad-form--disabled');
   filtersForm.classList.remove('map__filters--disabled');
   formFieldset.forEach((element) => {
     element.removeAttribute('disabled');
