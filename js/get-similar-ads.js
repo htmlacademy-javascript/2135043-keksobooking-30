@@ -50,8 +50,3 @@ const createSimilarAds = (data) => {
   return getAdsFragment;
 };
 
-const renderingSimilarAds = () => {
-  adsList.appendChild(createSimilarAds(getSimilarAds[0]));
-};
-
-export { renderingSimilarAds };

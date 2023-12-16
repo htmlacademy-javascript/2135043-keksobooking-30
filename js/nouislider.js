@@ -1,6 +1,8 @@
-import { adForm, priceHousingForm } from './form.js';
-import { MAX_PRICE_HOUSING_COUNT } from './data.js';
+import { adForm, priceHousingForm, typeHousingForm } from './form.js';
+import { MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT } from './data.js';
+
 const adFormSlider = adForm.querySelector('.ad-form__slider');
+
 
 const onSliderUpdate = () => {
   priceHousingForm.value = adFormSlider.noUiSlider.get();
@@ -14,7 +16,7 @@ const createSlider = () => {
       max: MAX_PRICE_HOUSING_COUNT,
     },
     step: 1000,
-    start: 0,
+    start: 1000,
     connect: 'lower',
     format: {
       to: function (value) {
@@ -29,8 +31,14 @@ const createSlider = () => {
     },
   });
 
+  typeHousingForm.addEventListener('change', () => {
+    const selected = MIN_PRICE_HOUSING_COUNT[typeHousingForm.value];
+    adFormSlider.noUiSlider.set(selected);
+  });
+
   adFormSlider.noUiSlider.on('update', onSliderUpdate);
 };
 
-
 export { createSlider };
+
+
