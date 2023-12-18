@@ -1,4 +1,5 @@
 import { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE } from './data.js';
+import { resetSlider } from './nouislider.js';
 
 const adForm = document.querySelector('.ad-form');
 const titleForm = adForm.querySelector('#title');
@@ -82,6 +83,7 @@ const onFormSubmit = (evt) => {
 const onResetForm = () => {
   adForm.reset();
   resetPristine();
+  resetSlider();
 };
 
 const sendForm = () => {

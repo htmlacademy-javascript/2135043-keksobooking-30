@@ -1,5 +1,6 @@
 import { adForm } from './form.js';
 
+
 const formFieldset = adForm.querySelectorAll('.ad-form__element');
 const filtersForm = document.querySelector('.map__filters');
 const selectFiltersForm = filtersForm.querySelectorAll('.map__filters select');
