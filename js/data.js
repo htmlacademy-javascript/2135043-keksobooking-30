@@ -91,16 +91,27 @@ const ROOMS_GUESTS_OPTIONS = {
   100: ['0']
 };
 
-const sliderOptions = {
-  min: 0,
-  max: 100000,
-  start: 1000,
-  step: 1000,
-};
+const SLIDER_STEP = 1000;
 
 const cityCenter = {
   lat: 35.652832,
   lng: 139.839478,
+};
+
+const pinIconOptions = {
+  url: './img/main-pin.svg',
+  width: 52,
+  height: 52,
+  anchorX: 26,
+  anchorY: 52,
+};
+
+const pinSimilarIconOptions = {
+  url: './img/pin.svg',
+  width: 30,
+  height: 30,
+  anchorX: 15,
+  anchorY: 30,
 };
 
 const ERROR_TITLE_MESSAGE = 'Cтрока должна содержать от 30 до 100 символов';
@@ -108,4 +119,5 @@ const ERROR_PRICE_MESSAGE = 'Указана некорректная цена';
 const ERROR_GUESTS_MESSAGE = 'Указано некорректное колличество мест';
 
 export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, MIN_LAT_NUMBER_COUNT, MAX_LAT_NUMBER_COUNT, MIN_LNG_NUMBER_COUNT, MAX_LNG_NUMBER_COUNT, TITLES, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, DESCRIPTIONS, PHOTOS, TYPES };
-export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE, sliderOptions, ZOOM, cityCenter };
+export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE, SLIDER_STEP };
+export { ZOOM, cityCenter, pinIconOptions, pinSimilarIconOptions };
