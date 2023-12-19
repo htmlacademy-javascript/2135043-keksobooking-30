@@ -1,6 +1,7 @@
 import { createActiveForm } from './form-inactive-active.js';
 import { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions, QUANTITY_NUMBERS } from './data.js';
 import { createArraySimilarAds } from './ads.js';
+import { createSimilarAds } from './get-similar-ads.js';
 
 const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -44,7 +45,8 @@ mainMarker.addTo(loadingMap);
 
 const points = createArraySimilarAds();
 
-points.forEach(({ lat, lng }) => {
+points.forEach((point) => {
+  const { location: { lat, lng } } = point;
   const similarAdsMarker = L.marker({
     lat,
     lng,
@@ -53,7 +55,7 @@ points.forEach(({ lat, lng }) => {
     mainPinSimilarIcon,
   });
 
-  similarAdsMarker.addTo(loadingMap);
+  similarAdsMarker.addTo(loadingMap).bindPopup(createSimilarAds(point));
 });
 
 const resetMap = (input) => {

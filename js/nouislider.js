@@ -1,5 +1,5 @@
 import { adForm, priceHousingForm, typeHousingForm } from './form.js';
-import { MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, SLIDER_STEP } from './data.js';
+import { MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, sliderOptions } from './data.js';
 
 const adFormSlider = document.querySelector('.ad-form__slider');
 
@@ -11,10 +11,10 @@ const onSliderUpdate = () => {
 const createSlider = () => {
   noUiSlider.create(adFormSlider, {
     range: {
-      min: MIN_PRICE_HOUSING_COUNT[typeHousingForm.value],
+      min: sliderOptions.min,
       max: MAX_PRICE_HOUSING_COUNT,
     },
-    step: SLIDER_STEP,
+    step: sliderOptions.step,
     start: MIN_PRICE_HOUSING_COUNT[typeHousingForm.value],
     connect: 'lower',
     format: {
