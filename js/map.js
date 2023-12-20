@@ -34,7 +34,6 @@ const mainPinSimilarIcon = L.icon({
   iconAnchor: [pinSimilarIconOptions.anchorX, pinSimilarIconOptions.anchorY],
 });
 
-
 mainMarker.on('moveend', (evt) => {
   addressForm.value = `${defaultCoordinates.lat}, ${defaultCoordinates.lng}`;
   const addressCoordinate = evt.target.getLatLng();
@@ -45,18 +44,26 @@ mainMarker.addTo(loadingMap);
 
 const points = createArraySimilarAds();
 
-points.forEach((point) => {
+const similarMarkerGroup = L.layerGroup().addTo(loadingMap);
+
+const createSimilarMarkerPoints = (point) => {
   const { location: { lat, lng } } = point;
   const similarAdsMarker = L.marker({
     lat,
     lng,
   },
   {
-    mainPinSimilarIcon,
+    icon: mainPinSimilarIcon,
   });
 
-  similarAdsMarker.addTo(loadingMap).bindPopup(createSimilarAds(point));
+  similarAdsMarker.addTo(similarMarkerGroup).bindPopup(createSimilarAds(point));
+};
+
+points.forEach((point) => {
+  createSimilarMarkerPoints(point);
 });
+
+//similarMarkerGroup.clearLayers();
 
 const resetMap = (input) => {
   mainMarker.setLatLng(defaultCoordinates);
@@ -64,5 +71,4 @@ const resetMap = (input) => {
   input.value = `${defaultCoordinates.lat.toFixed(QUANTITY_NUMBERS)}, ${defaultCoordinates.lng.toFixed(QUANTITY_NUMBERS)}`;
 };
 
-
-export { loadingMap, resetMap };
+export { loadingMap, createSimilarMarkerPoints, resetMap };

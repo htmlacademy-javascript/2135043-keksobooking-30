@@ -1,8 +1,9 @@
 import { sendForm, resetForm } from './form.js';
-import { createSlider } from './nouislider.js';
-import './map.js';
+import { loadingMap, createSimilarMarkerPoints, resetMap } from './map.js';
 
 sendForm();
 resetForm();
-createSlider();
+loadingMap();
+createSimilarMarkerPoints();
+resetMap();
 

@@ -1,5 +1,5 @@
 import { adForm } from './form.js';
-
+import { createSlider } from './nouislider.js';
 
 const formFieldset = adForm.querySelectorAll('.ad-form__element');
 const filtersForm = document.querySelector('.map__filters');
@@ -28,6 +28,7 @@ const createActiveForm = () => {
     element.removeAttribute('disabled');
   });
   fieldsetFiltersForm.disabled = false;
+  createSlider();
 };
 
 export { createInactiveForm, createActiveForm };
