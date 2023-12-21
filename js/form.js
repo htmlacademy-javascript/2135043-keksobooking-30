@@ -52,6 +52,7 @@ const getErrorMassages = () => {
 
 const validateForm = () => pristine.validate();
 const resetPristine = () => pristine.reset();
+const validatePrice = () => pristine.validate(priceHousingForm);
 
 const onFormTypeChange = () => {
   priceHousingForm.placeholder = MIN_PRICE_HOUSING_COUNT[typeHousingForm.value];
@@ -97,5 +98,5 @@ const sendForm = () => {
 
 const resetForm = () => adForm.addEventListener('reset', onResetForm);
 
-export { adForm, sendForm, resetForm, priceHousingForm, onFormTypeChange, typeHousingForm };
+export { adForm, sendForm, resetForm, priceHousingForm, onFormTypeChange, typeHousingForm, validatePrice };
 

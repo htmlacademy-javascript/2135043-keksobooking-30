@@ -1,4 +1,4 @@
-import { createActiveForm } from './form-inactive-active.js';
+import { createActiveForm, createInactiveForm } from './form-inactive-active.js';
 import { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions, QUANTITY_NUMBERS } from './data.js';
 import { createArraySimilarAds } from './ads.js';
 import { createSimilarAds } from './get-similar-ads.js';
@@ -6,6 +6,8 @@ import { createSimilarAds } from './get-similar-ads.js';
 const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const addressForm = document.querySelector('#address');
+
+createInactiveForm();
 
 const loadingMap = L.map('map-canvas')
   .on('load', () => {
@@ -71,4 +73,4 @@ const resetMap = (input) => {
   input.value = `${defaultCoordinates.lat.toFixed(QUANTITY_NUMBERS)}, ${defaultCoordinates.lng.toFixed(QUANTITY_NUMBERS)}`;
 };
 
-export { loadingMap, createSimilarMarkerPoints, resetMap };
+export { loadingMap, resetMap };

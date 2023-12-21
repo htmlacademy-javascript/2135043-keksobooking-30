@@ -1,4 +1,4 @@
-import { adForm, priceHousingForm, typeHousingForm } from './form.js';
+import { adForm, priceHousingForm, typeHousingForm, validatePrice } from './form.js';
 import { MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, sliderOptions } from './data.js';
 
 const adFormSlider = document.querySelector('.ad-form__slider');
@@ -6,6 +6,7 @@ const adFormSlider = document.querySelector('.ad-form__slider');
 const onSliderUpdate = () => {
   priceHousingForm.value = adFormSlider.noUiSlider.get();
   priceHousingForm.placeholder = priceHousingForm.value;
+  validatePrice();
 };
 
 const createSlider = () => {
