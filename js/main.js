@@ -1,4 +1,8 @@
-import './get-similar-ads.js';
-import { renderingSimilarAds } from './get-similar-ads.js';
+import { sendForm, resetForm } from './form.js';
+import { loadingMap, resetMap } from './map.js';
 
-renderingSimilarAds();
+sendForm();
+resetForm();
+loadingMap();
+resetMap();
+

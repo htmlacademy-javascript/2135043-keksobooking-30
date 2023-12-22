@@ -17,4 +17,6 @@ const createArrayWithRandomUniqElements = (elements) => {
   return Array.from(objects);
 };
 
-export { getRandomInteger, getRandomArrayElement, getRandomLocation, createArrayWithRandomUniqElements };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { getRandomInteger, getRandomArrayElement, getRandomLocation, createArrayWithRandomUniqElements, isEscapeKey };

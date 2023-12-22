@@ -1,11 +1,6 @@
-import { createArraySimilarAds } from './ads.js';
 import { TYPES } from './data.js';
 
-
-const adsList = document.querySelector('#map-canvas');
 const adsTemplate = document.querySelector('#card').content.querySelector('.popup');
-
-const getSimilarAds = createArraySimilarAds();
 
 const createSimilarAds = (data) => {
   const { author, offer } = data;
@@ -50,8 +45,4 @@ const createSimilarAds = (data) => {
   return getAdsFragment;
 };
 
-const renderingSimilarAds = () => {
-  adsList.appendChild(createSimilarAds(getSimilarAds[0]));
-};
-
-export { renderingSimilarAds };
+export { createSimilarAds };
