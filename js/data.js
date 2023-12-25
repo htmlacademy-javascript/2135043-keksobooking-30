@@ -93,7 +93,7 @@ const ROOMS_GUESTS_OPTIONS = {
 
 const sliderOptions = {
   min: 0,
-  step: 1000,
+  step: 1,
 };
 
 const defaultCoordinates = {

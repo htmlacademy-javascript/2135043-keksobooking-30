@@ -1,13 +1,7 @@
-import { adForm, priceHousingForm, typeHousingForm, validatePrice } from './form.js';
+import { priceHousingForm, typeHousingForm, validatePrice } from './form.js';
 import { MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, sliderOptions } from './data.js';
 
 const adFormSlider = document.querySelector('.ad-form__slider');
-
-const onSliderUpdate = () => {
-  priceHousingForm.value = adFormSlider.noUiSlider.get();
-  priceHousingForm.placeholder = priceHousingForm.value;
-  validatePrice();
-};
 
 const createSlider = () => {
   noUiSlider.create(adFormSlider, {
@@ -16,7 +10,7 @@ const createSlider = () => {
       max: MAX_PRICE_HOUSING_COUNT,
     },
     step: sliderOptions.step,
-    start: MIN_PRICE_HOUSING_COUNT[typeHousingForm.value],
+    start: sliderOptions.min,
     connect: 'lower',
     format: {
       to: function (value) {
@@ -30,16 +24,28 @@ const createSlider = () => {
       },
     },
   });
-
-  typeHousingForm.addEventListener('change', () => {
-    adFormSlider.noUiSlider.set(MIN_PRICE_HOUSING_COUNT[typeHousingForm.value]);
-  });
-
-  adFormSlider.noUiSlider.on('update', onSliderUpdate);
 };
 
-const resetSlider = () => adForm.noUiSlider.reset();
+const onSliderUpdate = () => {
+  priceHousingForm.value = adFormSlider.noUiSlider.get();
+  validatePrice();
+};
 
-export { createSlider, resetSlider };
+const onTypeInputChange = () => {
+  const current = MIN_PRICE_HOUSING_COUNT[typeHousingForm.value];
+  adFormSlider.noUiSlider.set(current);
+};
 
+const onPriceInputChange = () => {
+  adFormSlider.noUiSlider.set(priceHousingForm.value);
+};
 
+const updateSlider = () => adFormSlider.noUiSlider.on('update', onSliderUpdate);
+
+const changeType = () => typeHousingForm.addEventListener('change', onTypeInputChange);
+
+const changePrice = () => priceHousingForm.addEventListener('input', onPriceInputChange);
+
+const resetSlider = () => adFormSlider.noUiSlider.reset();
+
+export { createSlider, updateSlider, changeType, changePrice, resetSlider };
