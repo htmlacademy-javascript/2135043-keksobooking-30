@@ -93,7 +93,6 @@ const sendForm = () => {
   getErrorMassages();
   adForm.reset();
   resetPristine();
-  resetSlider();
 };
 
 const resetForm = () => adForm.addEventListener('reset', onResetForm);

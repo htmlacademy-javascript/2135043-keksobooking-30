@@ -9,15 +9,7 @@ const addressForm = document.querySelector('#address');
 
 createInactiveForm();
 
-const loadingMap = L.map('map-canvas')
-  .on('load', () => {
-    createActiveForm();
-  })
-  .setView(defaultCoordinates, ZOOM);
-
-L.tileLayer(TILE_LAYER, {
-  attribution: COPYRIGHT
-}).addTo(loadingMap);
+const map = L.map('map-canvas');
 
 const mainPinIcon = L.icon({
   iconUrl: pinIconOptions.url,
@@ -28,7 +20,7 @@ const mainPinIcon = L.icon({
 const mainMarker = L.marker(defaultCoordinates, {
   draggable: true,
   icon: mainPinIcon,
-});
+}).addTo(map);
 
 const mainPinSimilarIcon = L.icon({
   iconUrl: pinSimilarIconOptions.url,
@@ -42,11 +34,11 @@ mainMarker.on('moveend', (evt) => {
   addressForm.value = `${addressCoordinate.lat.toFixed(QUANTITY_NUMBERS)}, ${addressCoordinate.lng.toFixed(QUANTITY_NUMBERS)}`;
 });
 
-mainMarker.addTo(loadingMap);
+mainMarker.addTo(map);
 
 const points = createArraySimilarAds();
 
-const similarMarkerGroup = L.layerGroup().addTo(loadingMap);
+const similarMarkerGroup = L.layerGroup().addTo(map);
 
 const createSimilarMarkerPoints = (point) => {
   const { location: { lat, lng } } = point;
@@ -61,16 +53,30 @@ const createSimilarMarkerPoints = (point) => {
   similarAdsMarker.addTo(similarMarkerGroup).bindPopup(createSimilarAds(point));
 };
 
-points.forEach((point) => {
-  createSimilarMarkerPoints(point);
-});
+const getSimilarMarkers = () => {
+  points.forEach((point) => {
+    createSimilarMarkerPoints(point);
+  });
+};
 
 //similarMarkerGroup.clearLayers();
 
-const resetMap = (input) => {
+const loadingMap = () => {
+  map.on('load', () => {
+    createActiveForm();
+    getSimilarMarkers();
+  }).setView(defaultCoordinates, ZOOM);
+
+  L.tileLayer(TILE_LAYER, {
+    attribution: COPYRIGHT
+  }).addTo(map);
+};
+
+const resetMap = () => {
+  map.closePopup();
   mainMarker.setLatLng(defaultCoordinates);
-  loadingMap.setView(defaultCoordinates, ZOOM);
-  input.value = `${defaultCoordinates.lat.toFixed(QUANTITY_NUMBERS)}, ${defaultCoordinates.lng.toFixed(QUANTITY_NUMBERS)}`;
+  map.setView(defaultCoordinates, ZOOM);
+  addressForm.value = `${ defaultCoordinates.lat.toFixed(QUANTITY_NUMBERS) }, ${ defaultCoordinates.lng.toFixed(QUANTITY_NUMBERS) }`;
 };
 
 export { loadingMap, resetMap };

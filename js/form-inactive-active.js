@@ -8,25 +8,25 @@ const fieldsetFiltersForm = filtersForm.querySelector('.map__filters fieldset');
 
 const createInactiveForm = () => {
   adForm.classList.add('ad-form--disabled');
-  filtersForm.classList.add('map__filters--disabled');
   formFieldset.forEach((element) => {
-    element.setAttribute('disabled', 'disabled');
-  });
-  selectFiltersForm.forEach((element) => {
     element.setAttribute('disabled', 'disabled');
   });
   fieldsetFiltersForm.disabled = true;
 };
 
+const createInactiveMapFilters = () => {
+  filtersForm.classList.add('map__filters--disabled');
+  selectFiltersForm.forEach((element) => {
+    element.setAttribute('disabled', 'disabled');
+  });
+};
+
 const createActiveForm = () => {
   adForm.classList.remove('ad-form--disabled');
-  filtersForm.classList.remove('map__filters--disabled');
   formFieldset.forEach((element) => {
     element.removeAttribute('disabled');
   });
-  selectFiltersForm.forEach((element) => {
-    element.removeAttribute('disabled');
-  });
+
   fieldsetFiltersForm.disabled = false;
   createSlider();
   updateSlider();
@@ -34,4 +34,11 @@ const createActiveForm = () => {
   changeType();
 };
 
-export { createInactiveForm, createActiveForm };
+const createActiveMapFilters = () => {
+  filtersForm.classList.remove('map__filters--disabled');
+  selectFiltersForm.forEach((element) => {
+    element.removeAttribute('disabled');
+  });
+};
+
+export { createInactiveForm, createInactiveMapFilters, createActiveForm, createActiveMapFilters };
