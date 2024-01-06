@@ -1,23 +1,7 @@
 const SIMILAR_ADS_COUNT = 10;
 const QUANTITY_NUMBERS = 5;
-const MIN_LAT_NUMBER_COUNT = 65000;
-const MAX_LAT_NUMBER_COUNT = 70000;
-const MIN_LNG_NUMBER_COUNT = 70000;
-const MAX_LNG_NUMBER_COUNT = 80000;
 const ZOOM = 10;
 
-const TITLES = [
-  'Самое заманчивое предложение',
-  'Выгодное предложение',
-  'Больше, чем просто предложение',
-  'Это предложение не оставит вас равнодушным',
-  'Не проходите мимо!',
-  'Загляните и вы будете приятно удивлены',
-  'Предложение месяца',
-  'Не предложение, а сказка!',
-  'Интересное предложение',
-  'Красота и наслаждение',
-];
 
 const TYPE_HOUSING = [
   'palace',
@@ -40,25 +24,6 @@ const FEATURES = [
   'washer',
   'elevator',
   'conditioner',
-];
-
-const DESCRIPTIONS = [
-  'Просторное помещение. Подойдет для большой компании.',
-  'Я бы отметила новый год именно здесь!',
-  'Шикарный вид из окна!',
-  'Новое, только что обустроенное пространство.',
-  'Немного потрепанное, но очень уютное помещение.',
-  'Вам обязательно понравится здесь.',
-  'Очень интересное и необычное пространство.',
-  'Отсутствие соседей воодушевляет!',
-  'Хорошее пространство только для двоих.',
-  'Вы проведете здесь незабываемое время!',
-];
-
-const PHOTOS = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
 const TYPES = {
@@ -122,6 +87,27 @@ const ERROR_TITLE_MESSAGE = 'Cтрока должна содержать от 30
 const ERROR_PRICE_MESSAGE = 'Указана некорректная цена';
 const ERROR_GUESTS_MESSAGE = 'Указано некорректное колличество мест';
 
-export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, MIN_LAT_NUMBER_COUNT, MAX_LAT_NUMBER_COUNT, MIN_LNG_NUMBER_COUNT, MAX_LNG_NUMBER_COUNT, TITLES, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, DESCRIPTIONS, PHOTOS, TYPES };
+const SERVER_URL = 'https://30.javascript.pages.academy/keksobooking';
+
+const ServerRoute = {
+  GET_DATA: '/data',
+  SEND_DATA: '/',
+};
+
+const HttpMethod = {
+  GET: 'GET',
+  POST: 'POST',
+};
+
+const ErrorText = {
+  GET: 'Не удалось загрузить данные.',
+  POST: 'Ошибка отправки формы. Попробуйте ещё раз.',
+};
+
+const TITLE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, TYPES };
 export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE, sliderOptions };
 export { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions };
+export { SERVER_URL, ServerRoute, HttpMethod, ErrorText, TITLE_LAYER, COPYRIGHT};

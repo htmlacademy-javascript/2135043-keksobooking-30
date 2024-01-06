@@ -3,7 +3,6 @@ import { MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, sliderOptions } from 
 
 const adFormSlider = document.querySelector('.ad-form__slider');
 
-
 const onSliderUpdate = () => {
   priceHousingForm.value = adFormSlider.noUiSlider.get();
   validatePrice();
@@ -45,6 +44,7 @@ const changeType = () => typeHousingForm.addEventListener('change', onTypeInputC
 
 const changeSlider = () => priceHousingForm.addEventListener('input', onPriceInputChange);
 
-const resetSlider = () => adFormSlider.noUiSlider.reset();
-
+const resetSlider = () => {
+  adFormSlider.noUiSlider.reset();
+};
 export { createSlider, changeSlider, changeType, resetSlider };

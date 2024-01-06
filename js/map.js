@@ -1,13 +1,7 @@
-import { createActiveForm, createInactiveForm } from './form-inactive-active.js';
 import { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions, QUANTITY_NUMBERS } from './data.js';
-import { createArraySimilarAds } from './ads.js';
 import { createSimilarAds } from './get-similar-ads.js';
-
-const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-const addressForm = document.querySelector('#address');
-
-createInactiveForm();
+import { addressForm } from './form.js';
+import { TITLE_LAYER, COPYRIGHT } from './data.js';
 
 const map = L.map('map-canvas');
 
@@ -22,52 +16,36 @@ const mainMarker = L.marker(defaultCoordinates, {
   icon: mainPinIcon,
 }).addTo(map);
 
-const mainPinSimilarIcon = L.icon({
+const createPinSimilarIcon = () => L.icon({
   iconUrl: pinSimilarIconOptions.url,
   iconSize: [pinSimilarIconOptions.width, pinSimilarIconOptions.height],
   iconAnchor: [pinSimilarIconOptions.anchorX, pinSimilarIconOptions.anchorY],
 });
 
-mainMarker.on('moveend', (evt) => {
-  addressForm.value = `${defaultCoordinates.lat}, ${defaultCoordinates.lng}`;
-  const addressCoordinate = evt.target.getLatLng();
-  addressForm.value = `${addressCoordinate.lat.toFixed(QUANTITY_NUMBERS)}, ${addressCoordinate.lng.toFixed(QUANTITY_NUMBERS)}`;
-});
-
-mainMarker.addTo(map);
-
-const points = createArraySimilarAds();
-
 const similarMarkerGroup = L.layerGroup().addTo(map);
 
-const createSimilarMarkerPoints = (point) => {
-  const { location: { lat, lng } } = point;
-  const similarAdsMarker = L.marker({
-    lat,
-    lng,
-  },
-  {
-    icon: mainPinSimilarIcon,
-  });
+const createSimilarMarkerPoints = (point) => L.marker(point.location, {
+  icon: createPinSimilarIcon(),
+}).addTo(similarMarkerGroup).bindPopup(createSimilarAds(point));
 
-  similarAdsMarker.addTo(similarMarkerGroup).bindPopup(createSimilarAds(point));
+const getSimilarMarkers = (points) => {
+  points.forEach((point) => createSimilarMarkerPoints(point));
 };
 
-const getSimilarMarkers = () => {
-  points.forEach((point) => {
-    createSimilarMarkerPoints(point);
-  });
+const renderCoordinateMarker = (input) => {
+  input.value = `${defaultCoordinates.lat.toFixed(QUANTITY_NUMBERS)}, ${defaultCoordinates.lng.toFixed(QUANTITY_NUMBERS)}`;
+  mainMarker.on('moveend', (evt) => onMainMarkerMoveend(evt, input));
 };
 
-//similarMarkerGroup.clearLayers();
+function onMainMarkerMoveend(evt, input) {
+  const currentCoordinates = evt.target.getLatLng();
+  input.value = `${currentCoordinates.lat.toFixed(QUANTITY_NUMBERS)}, ${currentCoordinates.lng.toFixed(QUANTITY_NUMBERS)}`;
+}
 
 const loadingMap = () => {
-  map.on('load', () => {
-    createActiveForm();
-    getSimilarMarkers();
-  }).setView(defaultCoordinates, ZOOM);
+  map.on('load', (createElements) => createElements).setView(defaultCoordinates, ZOOM);
 
-  L.tileLayer(TILE_LAYER, {
+  L.tileLayer(TITLE_LAYER, {
     attribution: COPYRIGHT
   }).addTo(map);
 };
@@ -79,4 +57,4 @@ const resetMap = () => {
   addressForm.value = `${ defaultCoordinates.lat.toFixed(QUANTITY_NUMBERS) }, ${ defaultCoordinates.lng.toFixed(QUANTITY_NUMBERS) }`;
 };
 
-export { loadingMap, resetMap };
+export { loadingMap, resetMap, getSimilarMarkers, renderCoordinateMarker };

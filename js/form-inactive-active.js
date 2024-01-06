@@ -1,7 +1,7 @@
 import { adForm } from './form.js';
 import { changeSlider, changeType, createSlider } from './nouislider.js';
 
-const formFieldset = adForm.querySelectorAll('.ad-form__element');
+const formFieldset = document.querySelectorAll('.ad-form__element');
 const filtersForm = document.querySelector('.map__filters');
 const selectFiltersForm = filtersForm.querySelectorAll('.map__filters select');
 const fieldsetFiltersForm = filtersForm.querySelector('.map__filters fieldset');
