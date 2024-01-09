@@ -20,7 +20,7 @@ const pristine = new Pristine(adForm, {
   errorClass: 'ad-form__element--invalid',
   errorTextParent: 'ad-form__element',
   errorTextClass: 'text-help',
-});
+}, false);
 
 const isValidLengthTitle = (value) => value.length >= TITLE_LENGTH.min && value.length <= TITLE_LENGTH.max;
 
@@ -81,17 +81,17 @@ const adFormChange = () => {
 
 const onFormSubmit = (evt) => {
   evt.preventDefault();
-  sendForm(evt.target);
+  if (validateForm()) {
+    sendForm(evt.target);
+  }
 };
 
-const onResetForm = () => {
+const resetForm = () => {
   adForm.reset();
   resetPristine();
   resetSlider();
   resetMap();
 };
-
-const resetForm = () => adForm.addEventListener('reset', onResetForm);
 
 const getDisabledButton = (isDisabled) => {
   submitButton.disabled = isDisabled;
@@ -101,7 +101,6 @@ const onResetButtonClick = (evt) => {
   evt.preventDefault();
   resetForm();
 };
-
 
 const initForm = () => {
   adFormChange();
