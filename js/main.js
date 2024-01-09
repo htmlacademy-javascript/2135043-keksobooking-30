@@ -1,8 +1,15 @@
-import { sendForm, resetForm } from './form.js';
-import { loadingMap, resetMap } from './map.js';
+import { createActiveForm, createInactiveForm } from './form-inactive-active.js';
+import { initForm } from './form.js';
+import { getData } from './get-send-data.js';
+import { loadingMap} from './map.js';
 
-sendForm();
-resetForm();
-loadingMap();
-resetMap();
+const createMap = () => {
+  initForm();
+  createActiveForm();
+  getData();
+};
+
+createInactiveForm();
+createMap(loadingMap());
+
 

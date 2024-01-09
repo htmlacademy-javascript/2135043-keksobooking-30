@@ -4,7 +4,6 @@ const adsTemplate = document.querySelector('#card').content.querySelector('.popu
 
 const createSimilarAds = (data) => {
   const { author, offer } = data;
-  const getAdsFragment = document.createDocumentFragment();
   const adsElement = adsTemplate.cloneNode(true);
   adsElement.querySelector('.popup__avatar').src = `${author.avatar}`;
   adsElement.querySelector('.popup__title').textContent = `${offer.title}`;
@@ -17,7 +16,7 @@ const createSimilarAds = (data) => {
   const popupFeatures = adsElement.querySelector('.popup__features');
   const popupFeaturesListItem = popupFeatures.querySelectorAll('.popup__feature');
   popupFeaturesListItem.forEach((popupListItem) => {
-    const isFeatures = offer.features.some((feature) => popupListItem.classList.contains(`popup__feature--${feature}`),
+    const isFeatures = offer.features?.some((feature) => popupListItem.classList.contains(`popup__feature--${feature}`),
     );
     if (!isFeatures) {
       popupListItem.remove();
@@ -40,9 +39,7 @@ const createSimilarAds = (data) => {
     popupPhotosList.insertAdjacentElement('beforeend', offerPhoto);
   });
 
-  getAdsFragment.appendChild(adsElement);
-
-  return getAdsFragment;
+  return adsElement;
 };
 
 export { createSimilarAds };
