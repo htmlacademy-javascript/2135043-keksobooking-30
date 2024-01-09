@@ -2,6 +2,7 @@ import { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_G
 import { sendForm } from './get-send-data.js';
 import { renderCoordinateMarker, resetMap } from './map.js';
 import { resetSlider } from './nouislider.js';
+import { choosenAvatar, createImage, choosenPhoto } from './photo-loading.js';
 
 const adForm = document.querySelector('.ad-form');
 const titleForm = adForm.querySelector('#title');
@@ -104,6 +105,9 @@ const onResetButtonClick = (evt) => {
 
 const initForm = () => {
   adFormChange();
+  choosenAvatar();
+  choosenPhoto();
+  createImage();
   getErrorMassages();
   adForm.reset();
   resetPristine();

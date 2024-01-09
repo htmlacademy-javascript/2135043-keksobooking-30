@@ -107,7 +107,9 @@ const ErrorText = {
 const TITLE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
+
 export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, TYPES };
 export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE, sliderOptions };
 export { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions };
-export { SERVER_URL, ServerRoute, HttpMethod, ErrorText, TITLE_LAYER, COPYRIGHT};
+export { SERVER_URL, ServerRoute, HttpMethod, ErrorText, TITLE_LAYER, COPYRIGHT, FILE_TYPES};
