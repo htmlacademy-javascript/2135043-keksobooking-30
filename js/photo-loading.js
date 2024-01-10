@@ -27,19 +27,13 @@ const choosenAvatar = () => {
   fileAvatarChooser.addEventListener('change', onAvatarInputChange);
 };
 
-const createImage = () => {
-  const img = document.createElement('IMG');
-  img.src = 'muffin-grey.svg';
-  img.className = 'ad-form__image';
-  photoElement.append(img);
-};
-
 const onPhotoInputChange = () => {
   const file = photoOpenInput.files[0];
 
   if (file && isValidType(file)) {
     const url = URL.createObjectURL(file);
-    document.querySelector('.ad-form__image').src = url;
+    photoElement.style.backgroundImage = `url(${url})`;
+    photoElement.style.backgroundSize = 'contain';
   }
 };
 
@@ -47,4 +41,4 @@ const choosenPhoto = () => {
   filePhotoChooser.addEventListener('change', onPhotoInputChange);
 };
 
-export { choosenAvatar, createImage, choosenPhoto };
+export { choosenAvatar, choosenPhoto };
