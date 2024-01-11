@@ -1,15 +1,20 @@
 import { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE } from './data.js';
+import { sendForm } from './get-send-data.js';
+import { renderCoordinateMarker, resetMap } from './map.js';
 import { resetSlider } from './nouislider.js';
+import { choosenAvatar, choosenPhoto, resetPictures } from './photo-loading.js';
 
 const adForm = document.querySelector('.ad-form');
 const titleForm = adForm.querySelector('#title');
 const typeHousingForm = adForm.querySelector('#type');
 const priceHousingForm = adForm.querySelector('#price');
+const addressForm = document.querySelector('#address');
 const checkinForm = adForm.querySelector('#timein');
 const checkoutForm = adForm.querySelector('#timeout');
 const roomsCountForm = adForm.querySelector('#room_number');
 const guestsCountForm = adForm.querySelector('#capacity');
-//const submitButton = adForm.querySelector('.ad-form__submit');
+const submitButton = adForm.querySelector('.ad-form__submit');
+const resetButton = document.querySelector('.ad-form__reset');
 
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
@@ -76,27 +81,41 @@ const adFormChange = () => {
 };
 
 const onFormSubmit = (evt) => {
-  if (!validateForm()) {
-    evt.preventDefault();
+  evt.preventDefault();
+  if (validateForm()) {
+    sendForm(evt.target);
   }
 };
 
-const onResetForm = () => {
+const resetForm = () => {
   adForm.reset();
   resetPristine();
   resetSlider();
+  resetMap();
+  resetPictures();
 };
 
-const sendForm = () => {
-  adForm.addEventListener('submit', onFormSubmit);
+const getDisabledButton = (isDisabled) => {
+  submitButton.disabled = isDisabled;
+};
+
+const onResetButtonClick = (evt) => {
+  evt.preventDefault();
+  resetForm();
+};
+
+const initForm = () => {
   adFormChange();
+  choosenAvatar();
+  choosenPhoto();
   getErrorMassages();
   adForm.reset();
   resetPristine();
-  resetSlider();
+  renderCoordinateMarker(addressForm);
+  resetButton.addEventListener(('click'), onResetButtonClick);
+  adForm.addEventListener('submit', onFormSubmit);
 };
 
-const resetForm = () => adForm.addEventListener('reset', onResetForm);
 
-export { adForm, sendForm, resetForm, priceHousingForm, onFormTypeChange, typeHousingForm, validatePrice };
+export { adForm, addressForm, initForm, resetForm, priceHousingForm, onFormTypeChange, typeHousingForm, validateForm, validatePrice, getDisabledButton };
 
