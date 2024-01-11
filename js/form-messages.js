@@ -39,5 +39,4 @@ function onCloseDocumentClick() {
   closeFormMessage();
 }
 
-
 export { showFormSuccessMessage, showFormErrorMessage };
