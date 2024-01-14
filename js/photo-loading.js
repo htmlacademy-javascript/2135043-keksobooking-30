@@ -1,4 +1,4 @@
-import { FILE_TYPES } from './data.js';
+import { FILE_TYPES, ERROR_PICTURE_MESSAGE } from './data.js';
 
 const avatarOpenInput = document.querySelector('.ad-form-header__input');
 const fileAvatarChooser = document.querySelector('.ad-form__field input[type=file]');
@@ -6,7 +6,9 @@ const avatarElement = document.querySelector('.ad-form-header__preview img');
 
 const filePhotoChooser = document.querySelector('.ad-form__upload input[type=file]');
 const photoElement = document.querySelector('.ad-form__photo');
+const photoContainer = document.querySelector('.ad-form__photo-container');
 
+const ERROR_PICTURE_MASSAGE_CLASS = 'ad-form__photo--invalid';
 
 const isValidType = (file) => {
   const fileName = file.name.toLowerCase();
@@ -14,12 +16,27 @@ const isValidType = (file) => {
   return FILE_TYPES.includes(fileType);
 };
 
+const createErrorMessage = () => {
+  const container = document.createElement('div');
+  container.classList.add(`${ERROR_PICTURE_MASSAGE_CLASS}`);
+  container.textContent = ERROR_PICTURE_MESSAGE;
+  photoContainer.append(container);
+};
+
+/*const removeErrorMessage = () => {
+
+};*/
+
 const onAvatarInputChange = () => {
   const file = avatarOpenInput.files[0];
 
   if (file && isValidType(file)) {
     const url = URL.createObjectURL(file);
     avatarElement.src = url;
+  }
+
+  if (file && !isValidType(file)) {
+    createErrorMessage();
   }
 };
 
@@ -39,8 +56,13 @@ const createImage = (file) => {
 const photoInputUpload = (evt) => {
   const file = evt.target.files[0];
 
+  if (file && !isValidType(file)) {
+    createErrorMessage();
+  }
+
   if (file && isValidType(file)) {
     createImage(file);
+    //removeErrorMessage();
   }
 };
 
@@ -60,6 +82,7 @@ const resetAvatar = () => {
 
 const resetPhoto = () => {
   photoElement.innerHTML = '';
+  //removeErrorMessage();
 };
 
 const resetPictures = () => {
