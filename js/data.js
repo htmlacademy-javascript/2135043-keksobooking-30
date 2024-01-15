@@ -1,7 +1,8 @@
+const MIN_ADS_COUNT = 0;
 const SIMILAR_ADS_COUNT = 10;
 const QUANTITY_NUMBERS = 5;
 const ZOOM = 10;
-
+const UPDATING_LABELS_TIMEOUT = 500;
 
 const TYPE_HOUSING = [
   'palace',
@@ -42,11 +43,11 @@ const TITLE_LENGTH = {
 const MAX_PRICE_HOUSING_COUNT = 100000;
 
 const MIN_PRICE_HOUSING_COUNT = {
-  bungalow: 0,
-  flat: 1000,
-  hotel: 3000,
-  house: 5000,
-  palace: 10000
+  bungalow: '0',
+  flat: '1000',
+  hotel: '3000',
+  house: '5000',
+  palace: '10000'
 };
 
 const ROOMS_GUESTS_OPTIONS = {
@@ -63,8 +64,8 @@ const sliderOptions = {
 };
 
 const defaultCoordinates = {
-  lat: 35.652832,
-  lng: 139.839478,
+  lat: 35.68306,
+  lng: 139.75436,
 };
 
 const pinIconOptions = {
@@ -86,6 +87,7 @@ const pinSimilarIconOptions = {
 const ERROR_TITLE_MESSAGE = 'Cтрока должна содержать от 30 до 100 символов';
 const ERROR_PRICE_MESSAGE = 'Указана некорректная цена';
 const ERROR_GUESTS_MESSAGE = 'Указано некорректное колличество мест';
+const ERROR_PICTURE_MESSAGE = 'Некорректный формат изображения';
 
 const SERVER_URL = 'https://30.javascript.pages.academy/keksobooking';
 
@@ -109,7 +111,28 @@ const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">Open
 
 const FILE_TYPES = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
 
+const DEFAULT_VALUE = 'any';
+
+const PRICE_TYPES = {
+  'any': {
+    min: 0,
+    max: 100000
+  },
+  'middle': {
+    min: 10000,
+    max: 50000
+  },
+  'low': {
+    min: 0,
+    max: 10000
+  },
+  'high': {
+    min: 50000,
+    max: 100000
+  }
+};
+
 export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, TYPES };
-export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE, sliderOptions };
+export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE, ERROR_PICTURE_MESSAGE,sliderOptions };
 export { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions };
-export { SERVER_URL, ServerRoute, HttpMethod, ErrorText, TITLE_LAYER, COPYRIGHT, FILE_TYPES};
+export { SERVER_URL, ServerRoute, HttpMethod, ErrorText, TITLE_LAYER, COPYRIGHT, FILE_TYPES, UPDATING_LABELS_TIMEOUT, DEFAULT_VALUE, PRICE_TYPES, MIN_ADS_COUNT };

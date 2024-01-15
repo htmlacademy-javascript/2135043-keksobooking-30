@@ -1,8 +1,7 @@
 import { loadData, sendFormData } from './api.js';
 import { createActiveMapFilters, createInactiveMapFilters } from './form-inactive-active.js';
 import { createDataLoadingErrorMessage } from './data-loading-error-message.js';
-import { getDisabledButton } from './form.js';
-import { resetForm } from './form.js';
+import { getDisabledButton, resetForm } from './form.js';
 import { getSimilarMarkers } from './map.js';
 import { showFormSuccessMessage, showFormErrorMessage } from './form-messages.js';
 

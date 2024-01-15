@@ -1,17 +1,43 @@
-import { FILE_TYPES } from './data.js';
+import { FILE_TYPES, ERROR_PICTURE_MESSAGE } from './data.js';
 
 const avatarOpenInput = document.querySelector('.ad-form-header__input');
 const fileAvatarChooser = document.querySelector('.ad-form__field input[type=file]');
 const avatarElement = document.querySelector('.ad-form-header__preview img');
-
+const avatarContainer = document.querySelector('.ad-form-header');
 const filePhotoChooser = document.querySelector('.ad-form__upload input[type=file]');
 const photoElement = document.querySelector('.ad-form__photo');
+const photoContainer = document.querySelector('.ad-form__photo-container');
 
+const ERROR_PICTURE_MESSAGE_CLASS = 'ad-form__photo--invalid';
 
 const isValidType = (file) => {
   const fileName = file.name.toLowerCase();
   const fileType = fileName.split('.').pop();
   return FILE_TYPES.includes(fileType);
+};
+
+const validateImage = () => !document.querySelector(`.${ ERROR_PICTURE_MESSAGE_CLASS }`);
+
+const createErrorAvatarMessage = () => {
+  const container = document.createElement('div');
+  container.classList.add(`${ ERROR_PICTURE_MESSAGE_CLASS }`);
+  container.textContent = ERROR_PICTURE_MESSAGE;
+  avatarContainer.append(container);
+};
+
+const removeErrorAvatarMessage = () => {
+  avatarContainer.removeChild(avatarContainer.lastChild);
+};
+
+const createErrorPhotoMessage = () => {
+  const container = document.createElement('div');
+  container.classList.add(`${ ERROR_PICTURE_MESSAGE_CLASS }`);
+  container.textContent = ERROR_PICTURE_MESSAGE;
+  photoContainer.append(container);
+};
+
+const removeErrorPhotoMessage = () => {
+  photoContainer.removeChild(photoContainer.lastChild);
 };
 
 const onAvatarInputChange = () => {
@@ -20,6 +46,11 @@ const onAvatarInputChange = () => {
   if (file && isValidType(file)) {
     const url = URL.createObjectURL(file);
     avatarElement.src = url;
+    removeErrorAvatarMessage();
+  }
+
+  if (file && !isValidType(file)) {
+    createErrorAvatarMessage();
   }
 };
 
@@ -41,6 +72,11 @@ const photoInputUpload = (evt) => {
 
   if (file && isValidType(file)) {
     createImage(file);
+    removeErrorPhotoMessage();
+  }
+
+  if (file && !isValidType(file)) {
+    createErrorPhotoMessage();
   }
 };
 
@@ -56,10 +92,12 @@ const choosenPhoto = () => {
 
 const resetAvatar = () => {
   avatarElement.src = 'img/muffin-grey.svg';
+  removeErrorAvatarMessage();
 };
 
 const resetPhoto = () => {
   photoElement.innerHTML = '';
+  removeErrorPhotoMessage();
 };
 
 const resetPictures = () => {
@@ -67,4 +105,4 @@ const resetPictures = () => {
   resetPhoto();
 };
 
-export { choosenAvatar, choosenPhoto, resetPictures };
+export { choosenAvatar, choosenPhoto, resetPictures, validateImage };

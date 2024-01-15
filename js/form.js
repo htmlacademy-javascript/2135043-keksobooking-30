@@ -2,7 +2,7 @@ import { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_G
 import { sendForm } from './get-send-data.js';
 import { renderCoordinateMarker, resetMap } from './map.js';
 import { resetSlider } from './nouislider.js';
-import { choosenAvatar, choosenPhoto, resetPictures } from './photo-loading.js';
+import { choosenAvatar, choosenPhoto, resetPictures, validateImage } from './photo-loading.js';
 
 const adForm = document.querySelector('.ad-form');
 const titleForm = adForm.querySelector('#title');
@@ -82,7 +82,7 @@ const adFormChange = () => {
 
 const onFormSubmit = (evt) => {
   evt.preventDefault();
-  if (validateForm()) {
+  if (validateForm() && validateImage()) {
     sendForm(evt.target);
   }
 };
