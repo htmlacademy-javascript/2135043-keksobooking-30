@@ -1,7 +1,6 @@
-import { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions, QUANTITY_NUMBERS, SERVER_URL } from './data.js';
+import { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions, QUANTITY_NUMBERS, SERVER_URL, TITLE_LAYER, COPYRIGHT } from './data.js';
 import { createSimilarAds } from './get-similar-ads.js';
 import { addressForm, initForm } from './form.js';
-import { TITLE_LAYER, COPYRIGHT } from './data.js';
 import { filtersForm, filterSimilarMarkers } from './filter-sort.js';
 import { debounce } from './util.js';
 import { createActiveForm, createActiveMapFilters } from './form-inactive-active.js';
@@ -54,13 +53,13 @@ const onFilterChange = debounce(() => filtersChange());
 const initSimilarAdsMarkers = () => getData(SERVER_URL, getSimilarMarkers, createDataLoadingErrorMessage);
 
 const renderCoordinateMarker = (input) => {
-  input.value = `${defaultCoordinates.lat.toFixed(QUANTITY_NUMBERS)}, ${defaultCoordinates.lng.toFixed(QUANTITY_NUMBERS)}`;
+  input.value = `${ defaultCoordinates.lat.toFixed(QUANTITY_NUMBERS) }, ${ defaultCoordinates.lng.toFixed(QUANTITY_NUMBERS) }`;
   mainMarker.on('moveend', (evt) => onMainMarkerMoveend(evt, input));
 };
 
-function onMainMarkerMoveend(evt, input) {
+function onMainMarkerMoveend (evt, input) {
   const currentCoordinates = evt.target.getLatLng();
-  input.value = `${currentCoordinates.lat.toFixed(QUANTITY_NUMBERS)}, ${currentCoordinates.lng.toFixed(QUANTITY_NUMBERS)}`;
+  input.value = `${ currentCoordinates.lat.toFixed(QUANTITY_NUMBERS) }, ${ currentCoordinates.lng.toFixed(QUANTITY_NUMBERS) }`;
 }
 
 const loadingMap = () => {

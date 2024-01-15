@@ -17,14 +17,14 @@ const closeModalWindowErrorMessage = () => {
   document.body.removeEventListener('click', onDocumentClick);
 };
 
-function onDocumentKeydown(evt) {
+function onDocumentKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeModalWindowErrorMessage();
   }
 }
 
-function onDocumentClick() {
+function onDocumentClick () {
   closeModalWindowErrorMessage();
 }
 

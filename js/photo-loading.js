@@ -20,7 +20,7 @@ const validateImage = () => !document.querySelector(`.${ ERROR_PICTURE_MESSAGE_C
 
 const createErrorAvatarMessage = () => {
   const container = document.createElement('div');
-  container.classList.add(`${ERROR_PICTURE_MESSAGE_CLASS}`);
+  container.classList.add(`${ ERROR_PICTURE_MESSAGE_CLASS }`);
   container.textContent = ERROR_PICTURE_MESSAGE;
   avatarContainer.append(container);
 };

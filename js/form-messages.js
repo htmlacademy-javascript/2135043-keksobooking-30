@@ -28,14 +28,14 @@ const closeFormMessage = () => {
   document.removeEventListener('click', onCloseDocumentClick);
 };
 
-function onDocumentKeydown(evt) {
+function onDocumentKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeFormMessage();
   }
 }
 
-function onCloseDocumentClick() {
+function onCloseDocumentClick () {
   closeFormMessage();
 }
 
