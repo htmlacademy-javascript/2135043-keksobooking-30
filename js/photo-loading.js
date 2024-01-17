@@ -16,28 +16,33 @@ const isValidType = (file) => {
   return FILE_TYPES.includes(fileType);
 };
 
-const validateImage = () => !document.querySelector(`.${ ERROR_PICTURE_MESSAGE_CLASS }`);
+const validateImage = () => !document.querySelector(`.${ERROR_PICTURE_MESSAGE_CLASS}`);
+
+const resetAvatar = () => {
+  if (document.querySelector(`.${ERROR_PICTURE_MESSAGE_CLASS}`)) {
+    avatarContainer.removeChild(avatarContainer.lastChild);
+  }
+};
+
+const resetPhoto = () => {
+  if (document.querySelector(`.${ERROR_PICTURE_MESSAGE_CLASS}`)) {
+    photoContainer.removeChild(photoContainer.lastChild);
+  }
+};
+
 
 const createErrorAvatarMessage = () => {
   const container = document.createElement('div');
-  container.classList.add(`${ ERROR_PICTURE_MESSAGE_CLASS }`);
+  container.classList.add(`${ERROR_PICTURE_MESSAGE_CLASS}`);
   container.textContent = ERROR_PICTURE_MESSAGE;
   avatarContainer.append(container);
 };
 
-const removeErrorAvatarMessage = () => {
-  avatarContainer.removeChild(avatarContainer.lastChild);
-};
-
 const createErrorPhotoMessage = () => {
   const container = document.createElement('div');
-  container.classList.add(`${ ERROR_PICTURE_MESSAGE_CLASS }`);
+  container.classList.add(`${ERROR_PICTURE_MESSAGE_CLASS}`);
   container.textContent = ERROR_PICTURE_MESSAGE;
   photoContainer.append(container);
-};
-
-const removeErrorPhotoMessage = () => {
-  photoContainer.removeChild(photoContainer.lastChild);
 };
 
 const onAvatarInputChange = () => {
@@ -46,11 +51,13 @@ const onAvatarInputChange = () => {
   if (file && isValidType(file)) {
     const url = URL.createObjectURL(file);
     avatarElement.src = url;
-    removeErrorAvatarMessage();
+    resetAvatar();
   }
 
   if (file && !isValidType(file)) {
+    avatarContainer.classList.add('ad-form-header--invalid');
     createErrorAvatarMessage();
+    avatarElement.src = 'img/muffin-grey.svg';
   }
 };
 
@@ -72,11 +79,13 @@ const photoInputUpload = (evt) => {
 
   if (file && isValidType(file)) {
     createImage(file);
-    removeErrorPhotoMessage();
+    resetPhoto();
   }
 
   if (file && !isValidType(file)) {
+    photoContainer.classList.add('ad-form-header--invalid');
     createErrorPhotoMessage();
+    photoElement.innerHTML = ' ';
   }
 };
 
@@ -90,17 +99,9 @@ const choosenPhoto = () => {
   filePhotoChooser.addEventListener('change', onPhotoInputChange);
 };
 
-const resetAvatar = () => {
-  avatarElement.src = 'img/muffin-grey.svg';
-  removeErrorAvatarMessage();
-};
-
-const resetPhoto = () => {
-  photoElement.innerHTML = '';
-  removeErrorPhotoMessage();
-};
-
 const resetPictures = () => {
+  avatarElement.src = 'img/muffin-grey.svg';
+  photoElement.innerHTML = ' ';
   resetAvatar();
   resetPhoto();
 };
