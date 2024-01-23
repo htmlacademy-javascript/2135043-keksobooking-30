@@ -1,4 +1,4 @@
-import { FILE_TYPES, ERROR_PICTURE_MESSAGE } from './data.js';
+import { FILE_TYPES, ERROR_PICTURE_MESSAGE, imageOptions } from './data.js';
 
 const avatarOpenInput = document.querySelector('.ad-form-header__input');
 const fileAvatarChooser = document.querySelector('.ad-form__field input[type=file]');
@@ -68,9 +68,9 @@ const choosenAvatar = () => {
 const createImage = (file) => {
   const img = document.createElement('img');
   img.src = URL.createObjectURL(file);
-  img.alt = 'Фотграфия жилья';
-  img.width = '70';
-  img.height = '70';
+  img.alt = imageOptions.alt;
+  img.width = imageOptions.width;
+  img.height = imageOptions.height;
   photoElement.append(img);
 };
 

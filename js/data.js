@@ -76,14 +76,6 @@ const pinIconOptions = {
   anchorY: 52,
 };
 
-const pinSimilarIconOptions = {
-  url: './img/pin.svg',
-  width: 40,
-  height: 40,
-  anchorX: 20,
-  anchorY: 40,
-};
-
 const ERROR_TITLE_MESSAGE = 'Cтрока должна содержать от 30 до 100 символов';
 const ERROR_PRICE_MESSAGE = 'Указана некорректная цена';
 const ERROR_GUESTS_MESSAGE = 'Указано некорректное колличество мест';
@@ -132,7 +124,21 @@ const PRICE_TYPES = {
   }
 };
 
+const pinSimilarIconOptions = {
+  url: './img/pin.svg',
+  width: 40,
+  height: 40,
+  anchorX: 20,
+  anchorY: 40,
+};
+
+const imageOptions = {
+  alt: 'Фотграфия жилья',
+  width: 70,
+  height: 70,
+};
+
 export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, TYPES };
 export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE, ERROR_PICTURE_MESSAGE,sliderOptions };
 export { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions };
-export { SERVER_URL, ServerRoute, HttpMethod, ErrorText, TITLE_LAYER, COPYRIGHT, FILE_TYPES, UPDATING_LABELS_TIMEOUT, DEFAULT_VALUE, PRICE_TYPES, MIN_ADS_COUNT };
+export { SERVER_URL, ServerRoute, HttpMethod, ErrorText, TITLE_LAYER, COPYRIGHT, FILE_TYPES, UPDATING_LABELS_TIMEOUT, DEFAULT_VALUE, PRICE_TYPES, MIN_ADS_COUNT, imageOptions };
