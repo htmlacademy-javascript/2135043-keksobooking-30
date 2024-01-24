@@ -8,13 +8,13 @@ const adForm = document.querySelector('.ad-form');
 const titleForm = adForm.querySelector('#title');
 const typeHousingForm = adForm.querySelector('#type');
 const priceHousingForm = adForm.querySelector('#price');
-const addressForm = document.querySelector('#address');
+const addressForm = adForm.querySelector('#address');
 const checkinForm = adForm.querySelector('#timein');
 const checkoutForm = adForm.querySelector('#timeout');
 const roomsCountForm = adForm.querySelector('#room_number');
 const guestsCountForm = adForm.querySelector('#capacity');
 const submitButton = adForm.querySelector('.ad-form__submit');
-const resetButton = document.querySelector('.ad-form__reset');
+const resetButton = adForm.querySelector('.ad-form__reset');
 
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
