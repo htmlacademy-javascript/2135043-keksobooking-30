@@ -6,7 +6,7 @@ const errorFormMessageElement = document.querySelector('#error').content.querySe
 const showMessage = (element) => {
   document.body.append(element);
   document.addEventListener('keydown', onDocumentKeydown);
-  element.addEventListener('click', onCloseDocumentClick);
+  document.addEventListener('click', onCloseDocumentClick);
 };
 
 const showFormSuccessMessage = () => {
@@ -23,7 +23,9 @@ const showFormErrorMessage = () => {
 
 const closeFormMessage = () => {
   const message = document.querySelector('.success') || document.querySelector('.error');
-  message.remove();
+  if (message) {
+    message.remove();
+  }
   document.removeEventListener('keydown', onDocumentKeydown);
   document.removeEventListener('click', onCloseDocumentClick);
 };

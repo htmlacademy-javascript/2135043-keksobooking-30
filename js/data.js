@@ -4,29 +4,6 @@ const QUANTITY_NUMBERS = 5;
 const ZOOM = 10;
 const UPDATING_LABELS_TIMEOUT = 500;
 
-const TYPE_HOUSING = [
-  'palace',
-  'flat',
-  'house',
-  'bungalow',
-  'hotel',
-];
-
-const CHECKOUT_TIME = [
-  '12:00',
-  '13:00',
-  '14:00',
-];
-
-const FEATURES = [
-  'wifi',
-  'dishwasher',
-  'parking',
-  'washer',
-  'elevator',
-  'conditioner',
-];
-
 const TYPES = {
   'flat': 'Квартира',
   'bungalow': 'Бунгало',
@@ -138,7 +115,7 @@ const imageOptions = {
   height: 70,
 };
 
-export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, TYPE_HOUSING, CHECKOUT_TIME, FEATURES, TYPES };
+export { SIMILAR_ADS_COUNT, QUANTITY_NUMBERS, TYPES };
 export { TITLE_LENGTH, MAX_PRICE_HOUSING_COUNT, MIN_PRICE_HOUSING_COUNT, ROOMS_GUESTS_OPTIONS, ERROR_TITLE_MESSAGE, ERROR_PRICE_MESSAGE, ERROR_GUESTS_MESSAGE, ERROR_PICTURE_MESSAGE,sliderOptions };
 export { ZOOM, defaultCoordinates, pinIconOptions, pinSimilarIconOptions };
 export { SERVER_URL, ServerRoute, HttpMethod, ErrorText, TITLE_LAYER, COPYRIGHT, FILE_TYPES, UPDATING_LABELS_TIMEOUT, DEFAULT_VALUE, PRICE_TYPES, MIN_ADS_COUNT, imageOptions };

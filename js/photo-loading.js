@@ -2,10 +2,10 @@ import { FILE_TYPES, ERROR_PICTURE_MESSAGE, imageOptions } from './data.js';
 
 const avatarOpenInput = document.querySelector('.ad-form-header__input');
 const fileAvatarChooser = document.querySelector('.ad-form__field input[type=file]');
-const avatarElement = document.querySelector('.ad-form-header__preview img');
+const avatarUploadPreview = document.querySelector('.ad-form-header__preview img');
 const avatarContainer = document.querySelector('.ad-form-header');
 const filePhotoChooser = document.querySelector('.ad-form__upload input[type=file]');
-const photoElement = document.querySelector('.ad-form__photo');
+const photoHousingUpload = document.querySelector('.ad-form__photo');
 const photoContainer = document.querySelector('.ad-form__photo-container');
 
 const ERROR_PICTURE_MESSAGE_CLASS = 'ad-form__photo--invalid';
@@ -50,14 +50,14 @@ const onAvatarInputChange = () => {
 
   if (file && isValidType(file)) {
     const url = URL.createObjectURL(file);
-    avatarElement.src = url;
+    avatarUploadPreview.src = url;
     resetAvatar();
   }
 
   if (file && !isValidType(file)) {
     avatarContainer.classList.add('ad-form-header--invalid');
     createErrorAvatarMessage();
-    avatarElement.src = 'img/muffin-grey.svg';
+    avatarUploadPreview.src = 'img/muffin-grey.svg';
   }
 };
 
@@ -71,7 +71,7 @@ const createImage = (file) => {
   img.alt = imageOptions.alt;
   img.width = imageOptions.width;
   img.height = imageOptions.height;
-  photoElement.append(img);
+  photoHousingUpload.append(img);
 };
 
 const photoInputUpload = (evt) => {
@@ -85,7 +85,7 @@ const photoInputUpload = (evt) => {
   if (file && !isValidType(file)) {
     photoContainer.classList.add('ad-form-header--invalid');
     createErrorPhotoMessage();
-    photoElement.innerHTML = ' ';
+    photoHousingUpload.innerHTML = ' ';
   }
 };
 
@@ -100,8 +100,8 @@ const choosenPhoto = () => {
 };
 
 const resetPictures = () => {
-  avatarElement.src = 'img/muffin-grey.svg';
-  photoElement.innerHTML = ' ';
+  avatarUploadPreview.src = 'img/muffin-grey.svg';
+  photoHousingUpload.innerHTML = ' ';
   resetAvatar();
   resetPhoto();
 };
